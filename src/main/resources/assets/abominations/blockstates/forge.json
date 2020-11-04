@@ -1,0 +1,19 @@
+{
+	"variants": {
+        "facing=east": {
+          "model": "abominations:block/forge",
+          "y": 90
+        },
+        "facing=north": {
+          "model": "abominations:block/forge"
+        },
+        "facing=south": {
+          "model": "abominations:block/forge",
+          "y": 180
+        },
+        "facing=west": {
+          "model": "abominations:block/forge",
+          "y": 270
+        }
+      }
+}

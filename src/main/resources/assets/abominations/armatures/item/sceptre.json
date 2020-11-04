@@ -1,0 +1,30 @@
+{
+  "joints": {
+    "sphere": {
+      "12": [1], "13": [1], "14": [1], "15": [1], "16": [1], "17": [1]
+    }
+  },
+  "clips": {
+    "default": {
+      "loop": false,
+      "joint_clips": {},
+      "events": {}
+    },
+    "moving": {
+      "loop": true,
+      "joint_clips": {
+        "sphere": [
+          {
+            "variable": "angle",
+            "type": "uniform",
+            "interpolation": "linear",
+            "samples": [
+              0, 90, 180, 270
+            ]
+          }
+        ]
+      },
+      "events": {}
+    }
+  }
+}

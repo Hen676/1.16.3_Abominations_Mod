@@ -1,0 +1,34 @@
+modLoader="javafml" #mandatory
+loaderVersion="[34,)" #mandatory
+license="All rights reserved" #mandatory
+issueTrackerURL="http://my.issue.tracker/" #optional
+
+[[mods]] #mandatory
+modId="abominations" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Abominations" #mandatory
+
+# updateJSONURL="http://myurl.me/" #optional
+# displayURL="http://example.com/" #optional
+# logoFile="examplemod.png" #optional
+# credits="Thanks for this example mod goes to Java" #optional
+authors="Hen676" #optional
+
+description='''
+:P
+'''
+
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies.abominations]] #optional
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[34,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+# Here's another dependency
+[[dependencies.abominations]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.3]"
+    ordering="NONE"
+    side="BOTH"

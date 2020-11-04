@@ -1,0 +1,13 @@
+{
+  "parameters": {},
+  "clips": {
+    "default": "abominations:item/sceptre@default",
+    "moving": [ "apply", "abominations:item/sceptre@moving", "#cycle" ]
+  },
+  "states": ["default", "moving"],
+  "transitions": {
+    "default": "moving",
+    "moving": "default"
+  },
+  "start_state": "moving"
+}

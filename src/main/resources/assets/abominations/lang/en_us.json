@@ -1,0 +1,18 @@
+{
+	"item.abominations.laser": "Laser",
+	"item.abominations.capsule": "Capsule",
+	"item.abominations.sceptre": "§6Sceptre",
+	"item.abominations.codex": "§6Codex",
+	"item.abominations.personal_dis_integrator": "§6Personal Dis Integrator",
+	"item.abominations.gemini_mob_egg": "Gemini",
+	
+	"block.abominations.reservoir": "Reservoir",
+	"block.abominations.forge": "Forge",
+	
+	"entity.abominations.sheep_abomi": "Abomination sheep",
+	"entity.abominations.gemini": "Gemini",
+
+	"screen.abominations.reservoir": "Reservoir",
+	
+	"itemGroup.abominations": "Abominations"
+}

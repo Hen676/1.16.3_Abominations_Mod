@@ -1,0 +1,9 @@
+{
+	"parent": "block/orientable",
+	"textures": 
+	{
+	    "top": "abominations:block/forge",
+	    "front": "abominations:block/forge",
+	    "side": "abominations:block/forge"
+	}
+}
