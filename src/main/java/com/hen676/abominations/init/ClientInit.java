@@ -16,10 +16,10 @@ public class ClientInit {
     public static void init() {
         ItemColors itemColors = Minecraft.getInstance().getItemColors();
 
-        itemColors.register(new CapsuleColors(), RegisterInit.CAPSULE.get());
+        itemColors.register(new CapsuleColors(), ItemInit.CAPSULE.get());
 
-        RenderingRegistry.registerEntityRenderingHandler(RegisterInit.GEMINI_ENTITY.get(), GeminiRender::new);
+        RenderingRegistry.registerEntityRenderingHandler(EntityInit.GEMINI_ENTITY.get(), GeminiRender::new);
 
-        ScreenManager.registerFactory(RegisterInit.RESERVOIR_CONTAINER.get(), ReservoirGui::new);
+        ScreenManager.registerFactory(ContainerInit.RESERVOIR_CONTAINER.get(), ReservoirGui::new);
     }
 }

@@ -1,6 +1,6 @@
 package com.hen676.abominations;
 
-import com.hen676.abominations.init.RegisterInit;
+import com.hen676.abominations.init.ItemInit;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 
@@ -12,7 +12,7 @@ public class AbominationsGroup extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return new ItemStack(RegisterInit.SCEPTRE.get());
+        return new ItemStack(ItemInit.SCEPTRE.get());
     }
 }
 

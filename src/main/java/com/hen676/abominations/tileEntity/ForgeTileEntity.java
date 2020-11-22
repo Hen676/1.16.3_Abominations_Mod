@@ -1,7 +1,7 @@
 package com.hen676.abominations.tileEntity;
 
 import com.hen676.abominations.config.ForgeRecipeConfig;
-import com.hen676.abominations.init.RegisterInit;
+import com.hen676.abominations.init.TileEntityInit;
 import com.hen676.abominations.util.LoggerUtil;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -21,8 +21,10 @@ import java.util.Objects;
 
 public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
 
+    private List<String> recipes = ForgeRecipeConfig.Recipes;
+
     public ForgeTileEntity() {
-        super(RegisterInit.FORGE_TILE_ENTITY.get());
+        super(TileEntityInit.FORGE_TILE_ENTITY.get());
     }
 
     @Override
@@ -36,23 +38,23 @@ public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
             BlockPos A = new BlockPos(x-2, y-1, z-2);
             BlockPos B = new BlockPos(x+2, y+2, z+2);
 
-            List<LivingEntity> livingEntitys = world.getEntitiesWithinAABB(LivingEntity.class , new AxisAlignedBB(A, B));
+            List<LivingEntity> livingEntities = world.getEntitiesWithinAABB(LivingEntity.class , new AxisAlignedBB(A, B));
 
-            if(!livingEntitys.isEmpty()) {
-                List<String> livingEntitysNames = new ArrayList<String>();
+            if(!livingEntities.isEmpty()) {
+                List<String> livingEntityNames = new ArrayList<String>();
 
-                for (LivingEntity livingEntity : livingEntitys) {
-                    livingEntitysNames.add(Objects.requireNonNull(livingEntity.getType().getRegistryName()).toString());
+                for (LivingEntity livingEntity : livingEntities) {
+                    livingEntityNames.add(Objects.requireNonNull(livingEntity.getType().getRegistryName()).toString());
                 }
 
-                livingEntitysNames.sort(null);
+                livingEntityNames.sort(null);
 
-                String output = compareEntitesWithRecipe(livingEntitysNames);
+                String output = compareEntitiesWithRecipe(livingEntityNames);
 
                 if(output != null) {
                     EntityType<?> Result = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(output));
                     if (Result != null) {
-                        for (LivingEntity livingEntity : livingEntitys) {
+                        for (LivingEntity livingEntity : livingEntities) {
                             livingEntity.remove();
                         }
                         Result.spawn((ServerWorld) world, null, null, pos.up(), SpawnReason.MOB_SUMMONED, true, true);
@@ -62,13 +64,12 @@ public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
         }
     }
 
-    private String compareEntitesWithRecipe(List<String> livingEntitysNames) {
-        List<String> recipes = ForgeRecipeConfig.Recipes;
+    private String compareEntitiesWithRecipe(List<String> livingEntityNames) {
         for (String recipe : recipes) {
             String[] ingredients = recipe.split("/");
-            LoggerUtil.LOGGER.info(Arrays.equals(Arrays.copyOfRange(ingredients, 1, ingredients.length - 1),livingEntitysNames.toArray()));
+            LoggerUtil.LOGGER.info(Arrays.equals(Arrays.copyOfRange(ingredients, 1, ingredients.length - 1),livingEntityNames.toArray()));
 
-            if (Arrays.equals(Arrays.copyOfRange(ingredients, 1, ingredients.length),livingEntitysNames.toArray())) {
+            if (Arrays.equals(Arrays.copyOfRange(ingredients, 1, ingredients.length),livingEntityNames.toArray())) {
                 return ingredients[0];
             }
         }

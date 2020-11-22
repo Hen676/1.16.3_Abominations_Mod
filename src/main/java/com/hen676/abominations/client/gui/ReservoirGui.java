@@ -11,7 +11,11 @@ import net.minecraft.util.text.ITextComponent;
 
 public class ReservoirGui extends ContainerScreen<ReservoirContainer> {
 
-    private ResourceLocation GUI = LocationUtil.location("textures/gui/reservoir_1.png");
+
+
+    //TODO: Add scroll bar
+    //TODO: Add Capability
+    private ResourceLocation GUI = LocationUtil.location("textures/gui/reservoir.png");
 
     public ReservoirGui(ReservoirContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
@@ -27,7 +31,6 @@ public class ReservoirGui extends ContainerScreen<ReservoirContainer> {
         int i = ((this.width - this.xSize) / 2) -50;
         int j = (this.height - this.ySize) / 2;
         //drawString(matrixStack, Minecraft.getInstance().fontRenderer,"Reservoir",0xffffff,6,6);
-        drawString(matrixStack,Minecraft.getInstance().fontRenderer,"",0xffffff,6,6);
         super.drawGuiContainerForegroundLayer(matrixStack, x, y);
     }
 

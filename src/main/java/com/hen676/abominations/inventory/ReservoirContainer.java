@@ -1,6 +1,7 @@
 package com.hen676.abominations.inventory;
 
-import com.hen676.abominations.init.RegisterInit;
+import com.hen676.abominations.init.BlockInit;
+import com.hen676.abominations.init.ContainerInit;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -22,16 +23,16 @@ public class ReservoirContainer extends Container {
     private PlayerEntity playerEntity;
 
     public ReservoirContainer(int windowId, World world, BlockPos pos, PlayerInventory inv, PlayerEntity player) {
-        super(RegisterInit.RESERVOIR_CONTAINER.get(),windowId);
+        super(ContainerInit.RESERVOIR_CONTAINER.get(),windowId);
         tileEntity = world.getTileEntity(pos);
         this.inventory = inv;
         this.playerEntity = player;
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 107, 18));
-                addSlot(new SlotItemHandler(h, 1, 144, 18));
-                addSlot(new SlotItemHandler(h, 2, 107, 54));
-                addSlot(new SlotItemHandler(h, 3, 144, 54));
+                addSlot(new SlotItemHandler(h, 0, 108, 18));
+                addSlot(new SlotItemHandler(h, 1, 145, 18));
+                addSlot(new SlotItemHandler(h, 2, 108, 51));
+                addSlot(new SlotItemHandler(h, 3, 145, 51));
             });
         }
         layoutPlayerInventorySlots(108, 84);
@@ -65,7 +66,7 @@ public class ReservoirContainer extends Container {
 
     @Override
     public boolean canInteractWith(PlayerEntity playerIn) {
-        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(),tileEntity.getPos()), playerEntity, RegisterInit.RESERVOIR.get());
+        return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(),tileEntity.getPos()), playerEntity, BlockInit.RESERVOIR.get());
     }
 
     private void layoutPlayerInventorySlots(int leftCol, int topRow) {

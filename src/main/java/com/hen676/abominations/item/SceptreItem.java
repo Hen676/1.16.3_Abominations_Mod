@@ -1,18 +1,11 @@
 package com.hen676.abominations.item;
 
-import net.minecraft.entity.player.PlayerEntity;
+import com.hen676.abominations.recipe.EntityRecipe;
+import com.hen676.abominations.recipe.RecipeTypeEntity;
+import com.hen676.abominations.util.LoggerUtil;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResultType;
-import net.minecraft.world.World;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.common.ToolType;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
-
-import javax.annotation.Nullable;
 
 public class SceptreItem extends Item{
     public SceptreItem(Properties properties) {
@@ -22,8 +15,11 @@ public class SceptreItem extends Item{
     }
 
     @Override
-    public void onCreated(ItemStack stack, World worldIn, PlayerEntity playerIn) {
-
-        super.onCreated(stack, worldIn, playerIn);
+    public ActionResultType onItemUse(ItemUseContext context) {
+        if (!context.getWorld().isRemote && context.getPlayer() != null) {
+            EntityRecipe recipe = context.getWorld().getRecipeManager().getRecipesForType(new RecipeTypeEntity()).get(0);
+            LoggerUtil.LOGGER.info(recipe);
+        }
+        return super.onItemUse(context);
     }
 }
