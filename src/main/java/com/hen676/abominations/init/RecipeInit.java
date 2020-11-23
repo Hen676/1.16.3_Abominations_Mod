@@ -4,15 +4,12 @@ import com.hen676.abominations.Abominations;
 import com.hen676.abominations.recipe.EntityRecipe;
 import com.hen676.abominations.recipe.RecipeTypeEntity;
 import com.hen676.abominations.util.LocationUtil;
-import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
-import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 

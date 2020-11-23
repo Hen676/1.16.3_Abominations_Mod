@@ -1,7 +1,6 @@
 package com.hen676.abominations.entity;
 
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.attributes.Attribute;
 import net.minecraft.entity.ai.attributes.AttributeModifierMap;
 import net.minecraft.entity.ai.attributes.Attributes;
 import net.minecraft.entity.ai.goal.*;

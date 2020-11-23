@@ -4,9 +4,7 @@ import com.hen676.abominations.client.models.entities.GeminiModel;
 import com.hen676.abominations.entity.GeminiEntity;
 import com.hen676.abominations.util.LocationUtil;
 import net.minecraft.client.renderer.entity.EntityRendererManager;
-import net.minecraft.client.renderer.entity.LivingRenderer;
 import net.minecraft.client.renderer.entity.MobRenderer;
-import net.minecraft.entity.monster.MonsterEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class GeminiRender extends MobRenderer<GeminiEntity, GeminiModel<GeminiEntity>> {

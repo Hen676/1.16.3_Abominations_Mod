@@ -3,7 +3,6 @@ package com.hen676.abominations.init;
 import com.hen676.abominations.client.gui.ReservoirGui;
 import com.hen676.abominations.client.item.CapsuleColors;
 import com.hen676.abominations.client.render.GeminiRender;
-import com.hen676.abominations.entity.GeminiEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.client.renderer.color.ItemColors;
