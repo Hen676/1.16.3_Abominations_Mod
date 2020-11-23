@@ -3,6 +3,7 @@ package com.hen676.abominations.init;
 import com.hen676.abominations.Abominations;
 import com.hen676.abominations.item.CapsuleItem;
 import com.hen676.abominations.item.CodexItem;
+import com.hen676.abominations.item.GrowthPillItem;
 import com.hen676.abominations.item.SceptreItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -27,6 +28,8 @@ public class ItemInit {
     public static final RegistryObject<Item> RESERVOIR_ITEM = ITEMS.register("reservoir",() -> new BlockItem(BlockInit.RESERVOIR.get(),Abominations.GROUP));
     // Default Items
     public static final RegistryObject<Item> LASER = ITEMS.register("laser",() -> new Item(Abominations.GROUP));
+    // Consumables Items
+    public static final RegistryObject<Item> GROWTH_PILL = ITEMS.register("growth_pill",() -> new GrowthPillItem(Abominations.GROUP));
     // Tool Items
     public static final RegistryObject<Item> SCEPTRE = ITEMS.register("sceptre",() -> new SceptreItem(Abominations.GROUP));
     public static final RegistryObject<Item> CODEX = ITEMS.register("codex",() -> new CodexItem(Abominations.GROUP));
