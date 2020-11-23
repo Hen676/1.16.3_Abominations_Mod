@@ -1,8 +1,0 @@
-{
-  "type": "abominations:entity_recipe",
-  "ingredients": [
-    { "entity": "minecraft:sheep" },
-    { "entity": "minecraft:cow" }
-  ],
-  "output": "minecraft:pig"
-}

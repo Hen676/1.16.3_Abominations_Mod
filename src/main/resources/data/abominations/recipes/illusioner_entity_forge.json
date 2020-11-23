@@ -1,0 +1,9 @@
+{
+  "type": "abominations:entity_recipe",
+  "ingredients": [
+    { "entity": "minecraft:villager" },
+    { "entity": "minecraft:vindicator" },
+    { "entity": "minecraft:ravager" }
+  ],
+  "output": "minecraft:illusioner"
+}

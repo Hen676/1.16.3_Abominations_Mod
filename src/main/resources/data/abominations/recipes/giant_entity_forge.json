@@ -1,0 +1,9 @@
+{
+  "type": "abominations:entity_recipe",
+  "ingredients": [
+    { "entity": "minecraft:zombie" },
+    { "entity": "minecraft:zombie" },
+    { "entity": "minecraft:zombie" }
+  ],
+  "output": "minecraft:giant"
+}
