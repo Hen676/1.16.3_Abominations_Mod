@@ -26,7 +26,7 @@ public class Abominations {
 
     private static final AbominationsGroup ABOMI_GROUP = new AbominationsGroup("abominations");
     public static final Item.Properties GROUP = new Item.Properties().group(ABOMI_GROUP);
-    
+
     public Abominations() {
         final IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
 

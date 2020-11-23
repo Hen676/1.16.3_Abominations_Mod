@@ -20,10 +20,12 @@ public class RecipeInit {
 
     private static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZER = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, Abominations.MOD_ID);
 
+    public static final IRecipeType<EntityRecipe> ENTITY_RECIPE = new RecipeTypeEntity();
+
     public static final IRecipeType<EntityRecipe> RECIPE_TYPE = registerType(LocationUtil.location("entity_recipe"));
 
     private static IRecipeType registerType(ResourceLocation recipeTypeId) {
-        return Registry.register(Registry.RECIPE_TYPE, recipeTypeId, new RecipeTypeEntity());
+        return Registry.register(Registry.RECIPE_TYPE, recipeTypeId, ENTITY_RECIPE);
     }
 
     public static void init() {
@@ -33,6 +35,6 @@ public class RecipeInit {
     /**
      * Recipes
      */
-    public static final RegistryObject<EntityRecipe.Serializer> ENTITY_RECIPE = RECIPE_SERIALIZER.register("entity_recipe",() -> new EntityRecipe.Serializer());
+    public static final RegistryObject<EntityRecipe.Serializer> ENTITY_RECIPE_SERIALIZER = RECIPE_SERIALIZER.register("entity_recipe",() -> new EntityRecipe.Serializer());
 
 }

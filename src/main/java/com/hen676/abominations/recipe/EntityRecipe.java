@@ -70,7 +70,7 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
 
     @Override
     public IRecipeSerializer<?> getSerializer() {
-        return RecipeInit.ENTITY_RECIPE.get();
+        return RecipeInit.ENTITY_RECIPE_SERIALIZER.get();
     }
 
     @Override
