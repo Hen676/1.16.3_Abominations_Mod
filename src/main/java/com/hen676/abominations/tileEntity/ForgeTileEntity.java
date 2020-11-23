@@ -1,11 +1,14 @@
 package com.hen676.abominations.tileEntity;
 
-import com.hen676.abominations.config.ForgeRecipeConfig;
+import com.hen676.abominations.init.RecipeInit;
 import com.hen676.abominations.init.TileEntityInit;
-import com.hen676.abominations.util.LoggerUtil;
+import com.hen676.abominations.recipe.EntityRecipe;
+import com.hen676.abominations.util.RecipeUtil;
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
@@ -15,13 +18,12 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
 
-    private List<String> recipes = ForgeRecipeConfig.Recipes;
+    private List<ResourceLocation> livingEntityNames = new ArrayList<ResourceLocation>();
 
     public ForgeTileEntity() {
         super(TileEntityInit.FORGE_TILE_ENTITY.get());
@@ -38,21 +40,22 @@ public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
             BlockPos A = new BlockPos(x-2, y-1, z-2);
             BlockPos B = new BlockPos(x+2, y+2, z+2);
 
+            // Get Entities
             List<LivingEntity> livingEntities = world.getEntitiesWithinAABB(LivingEntity.class , new AxisAlignedBB(A, B));
 
             if(!livingEntities.isEmpty()) {
-                List<String> livingEntityNames = new ArrayList<String>();
-
+                // Get Registry Names
                 for (LivingEntity livingEntity : livingEntities) {
-                    livingEntityNames.add(Objects.requireNonNull(livingEntity.getType().getRegistryName()).toString());
+                    livingEntityNames.add(Objects.requireNonNull(livingEntity.getType()).getRegistryName());
                 }
 
-                livingEntityNames.sort(null);
+                // Sort Entities
+                livingEntityNames.sort(new RecipeUtil.ResourceLocationComparator());
+                ResourceLocation output = compareEntitiesWithRecipe(livingEntityNames);
 
-                String output = compareEntitiesWithRecipe(livingEntityNames);
-
+                // Spawn Entity if recipe matches
                 if(output != null) {
-                    EntityType<?> Result = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(output));
+                    EntityType<?> Result = ForgeRegistries.ENTITIES.getValue(output);
                     if (Result != null) {
                         for (LivingEntity livingEntity : livingEntities) {
                             livingEntity.remove();
@@ -62,15 +65,16 @@ public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
                 }
             }
         }
+        livingEntityNames.clear();
     }
 
-    private String compareEntitiesWithRecipe(List<String> livingEntityNames) {
-        for (String recipe : recipes) {
-            String[] ingredients = recipe.split("/");
-            LoggerUtil.LOGGER.info(Arrays.equals(Arrays.copyOfRange(ingredients, 1, ingredients.length - 1),livingEntityNames.toArray()));
-
-            if (Arrays.equals(Arrays.copyOfRange(ingredients, 1, ingredients.length),livingEntityNames.toArray())) {
-                return ingredients[0];
+    private ResourceLocation compareEntitiesWithRecipe(List<ResourceLocation> livingEntityNames) {
+        for (final IRecipe<?> recipe : Minecraft.getInstance().world.getRecipeManager().getRecipesForType(RecipeInit.RECIPE_TYPE)) {
+            if (recipe instanceof EntityRecipe) {
+                final EntityRecipe entityRecipe = (EntityRecipe) recipe;
+                if (entityRecipe.matches(livingEntityNames)) {
+                    return entityRecipe.getResult();
+                }
             }
         }
         return null;

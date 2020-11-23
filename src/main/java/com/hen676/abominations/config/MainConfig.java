@@ -17,9 +17,6 @@ public class MainConfig {
     public static final ForgeConfigSpec SERVER_CONFIG;
 
     static {
-        //TODO: remove
-        ForgeRecipeConfig.init(SERVER_BUILDER);
-
         COMMON_CONFIG = COMMON_BUILDER.build();
         CLIENT_CONFIG = CLIENT_BUILDER.build();
         SERVER_CONFIG = SERVER_BUILDER.build();
