@@ -1,8 +1,8 @@
 {
   "type": "abominations:entity_recipe",
-  "ingredients": [
+  "entities": [
     { "entity": "minecraft:zombie" },
     { "entity": "minecraft:horse" }
   ],
-  "output": "minecraft:zombie_horse"
+  "result": "minecraft:zombie_horse"
 }

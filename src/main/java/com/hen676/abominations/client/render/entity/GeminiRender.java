@@ -1,4 +1,4 @@
-package com.hen676.abominations.client.render;
+package com.hen676.abominations.client.render.entity;
 
 import com.hen676.abominations.client.models.entities.GeminiModel;
 import com.hen676.abominations.entity.GeminiEntity;

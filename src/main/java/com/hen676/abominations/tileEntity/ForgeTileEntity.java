@@ -69,7 +69,7 @@ public class ForgeTileEntity extends TileEntity implements ITickableTileEntity {
     }
 
     private ResourceLocation compareEntitiesWithRecipe(List<ResourceLocation> livingEntityNames) {
-        for (final IRecipe<?> recipe : Minecraft.getInstance().world.getRecipeManager().getRecipesForType(RecipeInit.RECIPE_TYPE)) {
+        for (final IRecipe<?> recipe : Minecraft.getInstance().world.getRecipeManager().getRecipesForType(RecipeInit.ENTITY_RECIPE)) {
             if (recipe instanceof EntityRecipe) {
                 final EntityRecipe entityRecipe = (EntityRecipe) recipe;
                 if (entityRecipe.matches(livingEntityNames)) {

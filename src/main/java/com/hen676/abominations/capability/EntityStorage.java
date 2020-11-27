@@ -1,10 +1,13 @@
 package com.hen676.abominations.capability;
 
 import com.hen676.abominations.api.capability.IEntityStorage;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.nbt.ListNBT;
+import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.HashMap;
 
-public class EntityStorage implements IEntityStorage {
+public class EntityStorage implements IEntityStorage, INBTSerializable<ListNBT> {
     private HashMap<String,Integer> entities;
     private byte maxStorage;
     private short maxSlotStorage = 256;
@@ -66,5 +69,26 @@ public class EntityStorage implements IEntityStorage {
     @Override
     public void setEntities(HashMap<String, Integer> hashMap) {
         entities = hashMap;
+    }
+
+    @Override
+    public ListNBT serializeNBT() {
+        ListNBT listNBT = new ListNBT();
+        entities.forEach((entity,amount)->{
+            CompoundNBT temp = new CompoundNBT();
+            temp.putString("entity",entity);
+            temp.putInt("amount",amount);
+            listNBT.add(temp);
+        });
+        return listNBT;
+    }
+
+    @Override
+    public void deserializeNBT(ListNBT nbt) {
+        nbt.forEach((temp)-> {
+            final String entity = ((CompoundNBT)temp).getString("entity");
+            final int amount = ((CompoundNBT)temp).getInt("amount");
+            entities.put(entity,amount);
+        });
     }
 }

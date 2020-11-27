@@ -25,6 +25,7 @@ public class CapsuleItem extends Item {
         if(target.getEntityWorld().isRemote) return ActionResultType.FAIL;
         if(target instanceof PlayerEntity || !target.isNonBoss() || !target.isAlive()) return ActionResultType.FAIL;
         if(!hasEntity(stack)) {
+
             String entityID = EntityType.getKey(target.getType()).toString();
             CompoundNBT nbt = new CompoundNBT();
             nbt.putString("entity", entityID);

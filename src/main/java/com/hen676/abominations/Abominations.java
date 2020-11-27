@@ -41,21 +41,22 @@ public class Abominations {
         TileEntityInit.init();
         ContainerInit.init();
         EntityInit.init();
-        //CapabilityInit.init();
+        RecipeInit.init();
 
 
         // Setup Bus
-        modBus.addListener(this::setup);
-        modBus.addListener(this::doClientStuff);
+        modBus.addListener(this::common);
+        modBus.addListener(this::client);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    private void setup(final FMLCommonSetupEvent event) {
-        // Setup Init
+    private void common(final FMLCommonSetupEvent event) {
+        // Common Init
+        CapabilityInit.init();
         GlobalEntityTypeAttributes.put(EntityInit.GEMINI_ENTITY.get(), GeminiEntity.setCustomAttributes().create());
     }
 
-    private void doClientStuff(final FMLClientSetupEvent event) {
+    private void client(final FMLClientSetupEvent event) {
         // Client Init
         ClientInit.init();
     }
