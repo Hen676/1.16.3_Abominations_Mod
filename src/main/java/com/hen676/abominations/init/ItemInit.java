@@ -10,8 +10,6 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.rmi.registry.Registry;
-
 public class ItemInit {
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Abominations.MOD_ID);
 
@@ -25,6 +23,7 @@ public class ItemInit {
     // Block Items
     public static final RegistryObject<Item> FORGE_ITEM = ITEMS.register("forge",() -> new BlockItem(BlockInit.FORGE.get(),Abominations.GROUP));
     public static final RegistryObject<Item> RESERVOIR_ITEM = ITEMS.register("reservoir",() -> new BlockItem(BlockInit.RESERVOIR.get(),Abominations.GROUP));
+    public static final RegistryObject<Item> INCINERATOR_ITEM = ITEMS.register("incinerator",() -> new BlockItem(BlockInit.INCINERATOR.get(),Abominations.GROUP));
     // Default Items
     public static final RegistryObject<Item> LASER = ITEMS.register("laser",() -> new Item(Abominations.GROUP));
     public static final RegistryObject<Item> ENTITY = ITEMS.register("entity",() -> new EntityItem(Abominations.GROUP));

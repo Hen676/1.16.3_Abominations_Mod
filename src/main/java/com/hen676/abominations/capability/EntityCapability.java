@@ -1,7 +1,7 @@
 package com.hen676.abominations.capability;
 
 import com.hen676.abominations.Abominations;
-import com.hen676.abominations.api.capability.IEntityStorage;
+import com.hen676.abominations.api.capability.IEntity;
 import com.hen676.abominations.tileEntity.ReservoirTileEntity;
 import com.hen676.abominations.util.LocationUtil;
 import net.minecraft.nbt.INBT;
@@ -21,18 +21,18 @@ import net.minecraftforge.fml.common.Mod;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class EntityStorageCapability implements ICapabilitySerializable<INBT> {
+public class EntityCapability implements ICapabilitySerializable<INBT> {
 
-    @CapabilityInject(IEntityStorage.class)
-    public static final Capability<IEntityStorage> ENTITY_STORAGE_CAPABILITY = null;
+    @CapabilityInject(IEntity.class)
+    public static final Capability<IEntity> ENTITY_STORAGE_CAPABILITY = null;
 
-    private final LazyOptional<IEntityStorage> LazyOptionalInstance;
-    private IEntityStorage instance;
+    private final LazyOptional<IEntity> LazyOptionalInstance;
+    private IEntity instance;
 
     private static final byte DEFAULT_CAPACITY = 10;
     private static final ResourceLocation ID = LocationUtil.location("entity_storage");
 
-    public EntityStorageCapability(IEntityStorage instance) {
+    public EntityCapability(IEntity instance) {
         this.instance = instance;
         if(instance != null) {
             this.LazyOptionalInstance = LazyOptional.of(()-> instance);
@@ -42,7 +42,7 @@ public class EntityStorageCapability implements ICapabilitySerializable<INBT> {
     }
 
     public static void register() {
-        CapabilityManager.INSTANCE.register(IEntityStorage.class, new EntityStorageStorage(),()-> new EntityStorage(DEFAULT_CAPACITY));
+        CapabilityManager.INSTANCE.register(IEntity.class, new EntityStorage(),()-> new Entity(DEFAULT_CAPACITY));
     }
 
     @Nonnull
@@ -68,8 +68,8 @@ public class EntityStorageCapability implements ICapabilitySerializable<INBT> {
         @SubscribeEvent
         public static void attachBlockCapabilities(final AttachCapabilitiesEvent<TileEntity> event) {
             if(event.getObject() instanceof ReservoirTileEntity) {
-                final IEntityStorage entityStorage = new EntityStorage(DEFAULT_CAPACITY);
-                event.addCapability(ID, new EntityStorageCapability(entityStorage));
+                final IEntity entityStorage = new Entity(DEFAULT_CAPACITY);
+                event.addCapability(ID, new EntityCapability(entityStorage));
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.hen676.abominations.item;
 
+import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -13,7 +14,6 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 
 public class CapsuleItem extends Item {
-
     public CapsuleItem(Properties properties) {
         super(properties
                 .maxStackSize(1)
@@ -61,7 +61,13 @@ public class CapsuleItem extends Item {
         return ActionResultType.FAIL;
     }
 
-    public boolean hasEntity(ItemStack stack) {
+    public static boolean hasEntity(ItemStack stack) {
         return !stack.isEmpty() && stack.hasTag() && stack.getTag().contains("entity");
+    }
+
+    public static float hasEntity(ItemStack stack, ClientWorld clientWorld, LivingEntity livingEntity) {
+        if(hasEntity(stack))
+            return 1F;
+        return 0F;
     }
 }

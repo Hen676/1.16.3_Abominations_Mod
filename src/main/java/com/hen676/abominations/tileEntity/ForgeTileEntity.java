@@ -1,8 +1,8 @@
 package com.hen676.abominations.tileEntity;
 
+import com.hen676.abominations.crafting.EntityRecipe;
 import com.hen676.abominations.init.RecipeInit;
 import com.hen676.abominations.init.TileEntityInit;
-import com.hen676.abominations.recipe.EntityRecipe;
 import com.hen676.abominations.util.RecipeUtil;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.EntityType;

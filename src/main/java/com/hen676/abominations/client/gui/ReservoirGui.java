@@ -9,25 +9,22 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 public class ReservoirGui extends ContainerScreen<ReservoirContainer> {
-
-
-
-    //TODO: Add scroll bar
     //TODO: Add Capability
-    private ResourceLocation GUI = LocationUtil.location("textures/gui/reservoir.png");
+    private ResourceLocation GUI = LocationUtil.location("textures/gui/reservoir2.png");
 
     public ReservoirGui(ReservoirContainer screenContainer, PlayerInventory inv, ITextComponent titleIn) {
         super(screenContainer, inv, titleIn);
-        this.xSize = 276;
+        this.xSize = 176;
+        this.ySize = 207;
         this.titleX = 7;
         this.titleY = 7;
-        this.playerInventoryTitleX = 107;
-        this.playerInventoryTitleY = 68;
+        this.playerInventoryTitleX = 7;
+        this.playerInventoryTitleY = 114;
     }
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
-        int i = ((this.width - this.xSize) / 2) -50;
+        int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
         //drawString(matrixStack, Minecraft.getInstance().fontRenderer,"Reservoir",0xffffff,6,6);
         super.drawGuiContainerForegroundLayer(matrixStack, x, y);
@@ -38,7 +35,7 @@ public class ReservoirGui extends ContainerScreen<ReservoirContainer> {
         this.minecraft.getTextureManager().bindTexture(GUI);
         int i = (this.width - this.xSize) / 2;
         int j = (this.height - this.ySize) / 2;
-        blit(matrixStack, i, j, 0.0F, 0.0F, this.xSize, this.ySize, 512, 256);
+        blit(matrixStack, i, j, 0.0F, 0.0F, this.xSize, this.ySize, 256, 256);
     }
 
     @Override

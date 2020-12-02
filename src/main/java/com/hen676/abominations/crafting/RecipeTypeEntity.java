@@ -1,4 +1,4 @@
-package com.hen676.abominations.recipe;
+package com.hen676.abominations.crafting;
 
 import net.minecraft.item.crafting.IRecipeType;
 

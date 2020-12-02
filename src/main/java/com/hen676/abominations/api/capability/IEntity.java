@@ -2,7 +2,7 @@ package com.hen676.abominations.api.capability;
 
 import java.util.HashMap;
 
-public interface IEntityStorage {
+public interface IEntity {
     HashMap<String, Integer> getEntities();
     void setEntities(HashMap<String, Integer> hashMap);
     int getMaxStorage();

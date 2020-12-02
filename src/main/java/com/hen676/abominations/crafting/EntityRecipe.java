@@ -1,14 +1,16 @@
-package com.hen676.abominations.recipe;
+package com.hen676.abominations.crafting;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.hen676.abominations.init.BlockInit;
+import com.hen676.abominations.init.ItemInit;
 import com.hen676.abominations.init.RecipeInit;
 import com.hen676.abominations.util.RecipeUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
@@ -49,7 +51,11 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
 
     @Override
     public ItemStack getCraftingResult(RecipeWrapper inv) {
-        return ItemStack.EMPTY;
+        ItemStack item = new ItemStack(ItemInit.ENTITY.get());
+        CompoundNBT nbt = item.getTag();
+        nbt.putString("entity",this.result.toString());
+        item.setTag(nbt);
+        return item;
     }
 
     @Override
@@ -59,7 +65,11 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
 
     @Override
     public ItemStack getRecipeOutput() {
-        return ItemStack.EMPTY;
+        ItemStack item = new ItemStack(ItemInit.ENTITY.get());
+        CompoundNBT nbt = new CompoundNBT();
+        nbt.putString("entity",this.result.toString());
+        item.setTag(nbt);
+        return item;
     }
 
     @Override

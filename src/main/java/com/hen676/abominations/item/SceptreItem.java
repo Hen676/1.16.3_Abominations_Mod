@@ -1,7 +1,7 @@
 package com.hen676.abominations.item;
 
+import com.hen676.abominations.crafting.EntityRecipe;
 import com.hen676.abominations.init.RecipeInit;
-import com.hen676.abominations.recipe.EntityRecipe;
 import com.hen676.abominations.util.LoggerUtil;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemUseContext;

@@ -29,13 +29,13 @@ public class ReservoirContainer extends Container {
         this.playerEntity = player;
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 108, 18));
-                addSlot(new SlotItemHandler(h, 1, 145, 18));
-                addSlot(new SlotItemHandler(h, 2, 108, 51));
-                addSlot(new SlotItemHandler(h, 3, 145, 51));
+                addSlot(new SlotItemHandler(h, 0, 8, 93));
+                addSlot(new SlotItemHandler(h, 1, 44, 93));
+                addSlot(new SlotItemHandler(h, 2, 116, 93));
+                addSlot(new SlotItemHandler(h, 3, 152, 93));
             });
         }
-        layoutPlayerInventorySlots(108, 84);
+        layoutPlayerInventorySlots(8, 125);
     }
 
     @Override
@@ -46,11 +46,23 @@ public class ReservoirContainer extends Container {
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
+
+            if(index == 1 && index == 3) {
+                if(!this.mergeItemStack(itemstack1,4,this.inventory.getSizeInventory(),true)) return ItemStack.EMPTY;
+                slot.onSlotChange(itemstack1,itemstack);
+            } else if (index != 0 && index != 2) {
+                if (index >= 3 && index < 30) {
+                    if (!this.mergeItemStack(itemstack1, 30, 39, false)) return ItemStack.EMPTY;
+                } else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+                    return ItemStack.EMPTY;
+                }
+            }
+
             if (index < this.inventory.getSizeInventory()) {
                 if (!this.mergeItemStack(itemstack1, this.inventory.getSizeInventory(), this.inventorySlots.size(), true)) {
                     return ItemStack.EMPTY;
                 }
-            } else if (!this.mergeItemStack(itemstack1, 0, this.inventory.getSizeInventory(), false)) {
+            } else if (!this.mergeItemStack(itemstack1, 4, this.inventory.getSizeInventory(), false)) {
                 return ItemStack.EMPTY;
             }
 

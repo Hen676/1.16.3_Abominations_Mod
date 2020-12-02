@@ -1,8 +1,8 @@
 package com.hen676.abominations.init;
 
 import com.hen676.abominations.Abominations;
-import com.hen676.abominations.recipe.EntityRecipe;
-import com.hen676.abominations.recipe.RecipeTypeEntity;
+import com.hen676.abominations.crafting.EntityRecipe;
+import com.hen676.abominations.crafting.RecipeTypeEntity;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.item.crafting.IRecipeType;
 import net.minecraftforge.fml.RegistryObject;

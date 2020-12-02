@@ -1,8 +1,14 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "abominations:item/capsule_top1",
-        "layer1": "abominations:item/capsule_top2",
-        "layer2": "abominations:item/capsule"
-    }
+        "layer0": "abominations:item/capsule"
+    },
+    "overrides": [
+        {
+            "predicate": {
+                "full": 1
+            },
+            "model": "abominations:item/capsule_full"
+        }
+    ]
 }

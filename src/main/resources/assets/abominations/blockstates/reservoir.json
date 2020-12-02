@@ -1,18 +1,18 @@
 {
 	"variants": {
         "facing=east": {
-          "model": "abominations:block/forge",
+          "model": "abominations:block/reservoir",
           "y": 90
         },
         "facing=north": {
-          "model": "abominations:block/forge"
+          "model": "abominations:block/reservoir"
         },
         "facing=south": {
-          "model": "abominations:block/forge",
+          "model": "abominations:block/reservoir",
           "y": 180
         },
         "facing=west": {
-          "model": "abominations:block/forge",
+          "model": "abominations:block/reservoir",
           "y": 270
         }
     }

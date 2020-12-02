@@ -2,6 +2,7 @@ package com.hen676.abominations.init;
 
 import com.hen676.abominations.Abominations;
 import com.hen676.abominations.block.ForgeBlock;
+import com.hen676.abominations.block.IncineratorBlock;
 import com.hen676.abominations.block.ReservoirBlock;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
@@ -21,4 +22,5 @@ public class BlockInit {
      */
     public static final RegistryObject<Block> FORGE = BLOCKS.register("forge",()-> new ForgeBlock());
     public static final RegistryObject<Block> RESERVOIR = BLOCKS.register("reservoir",()-> new ReservoirBlock());
+    public static final RegistryObject<Block> INCINERATOR = BLOCKS.register("incinerator",()-> new IncineratorBlock());
 }

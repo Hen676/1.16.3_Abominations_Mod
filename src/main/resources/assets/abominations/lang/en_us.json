@@ -5,9 +5,11 @@
 	"item.abominations.codex": "§6Codex",
 	"item.abominations.growth_pill": "Growth Pill",
 	"item.abominations.gemini_mob_egg": "Gemini",
+	"item.abominations.entity": "§6Entity",
 	
 	"block.abominations.reservoir": "Reservoir",
 	"block.abominations.forge": "Forge",
+	"block.abominations.incinerator": "Incinerator",
 	
 	"entity.abominations.sheep_abomi": "Abomination sheep",
 	"entity.abominations.gemini": "Gemini",

@@ -1,9 +1,9 @@
 package com.hen676.abominations.init;
 
-import com.hen676.abominations.capability.EntityStorageCapability;
+import com.hen676.abominations.capability.EntityCapability;
 
 public class CapabilityInit {
     public static void init() {
-        EntityStorageCapability.register();
+        EntityCapability.register();
     }
 }

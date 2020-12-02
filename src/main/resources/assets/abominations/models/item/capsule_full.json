@@ -1,0 +1,8 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "abominations:item/capsule",
+        "layer1": "abominations:item/capsule_top",
+        "layer2": "abominations:item/capsule_bottom"
+    }
+}

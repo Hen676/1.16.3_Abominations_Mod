@@ -1,0 +1,35 @@
+{
+	"variants": {
+        "facing=east,enabled=false": {
+          "model": "abominations:block/incinerator",
+          "y": 90
+        },
+        "facing=north,enabled=false": {
+          "model": "abominations:block/incinerator"
+        },
+        "facing=south,enabled=false": {
+          "model": "abominations:block/incinerator",
+          "y": 180
+        },
+        "facing=west,enabled=false": {
+          "model": "abominations:block/incinerator",
+          "y": 270
+        },
+
+        "facing=east,enabled=true": {
+          "model": "abominations:block/incinerator_on",
+          "y": 90
+        },
+        "facing=north,enabled=true": {
+          "model": "abominations:block/incinerator_on"
+        },
+        "facing=south,enabled=true": {
+          "model": "abominations:block/incinerator_on",
+          "y": 180
+        },
+        "facing=west,enabled=true": {
+          "model": "abominations:block/incinerator_on",
+          "y": 270
+        }
+    }
+}
