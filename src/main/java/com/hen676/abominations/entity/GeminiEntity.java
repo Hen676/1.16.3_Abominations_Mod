@@ -16,14 +16,13 @@ import net.minecraft.world.IServerWorld;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerBossInfo;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.function.Predicate;
 
 public class GeminiEntity extends MonsterEntity {
     private final ServerBossInfo bossInfo = (ServerBossInfo)(new ServerBossInfo(this.getDisplayName(), BossInfo.Color.PURPLE, BossInfo.Overlay.PROGRESS)).setDarkenSky(true);
-    private static final Predicate<LivingEntity> NOT_UNDEAD = (target) -> {
-        return target.getCreatureAttribute() != CreatureAttribute.UNDEAD && target.attackable();
-    };
+    private static final Predicate<LivingEntity> NOT_UNDEAD = (target) -> target.getCreatureAttribute() != CreatureAttribute.UNDEAD && target.attackable();
 
     public GeminiEntity(EntityType<? extends MonsterEntity> type, World worldIn) {
         super(type, worldIn);
@@ -32,11 +31,9 @@ public class GeminiEntity extends MonsterEntity {
 
     @Nullable
     @Override
-    public ILivingEntityData onInitialSpawn(IServerWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+    public ILivingEntityData onInitialSpawn(@Nonnull IServerWorld worldIn, @Nonnull DifficultyInstance difficultyIn, @Nonnull SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
         return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
     }
-
-
 
     public static AttributeModifierMap.MutableAttribute setCustomAttributes() {
         return MobEntity.registerAttributes()
@@ -70,7 +67,7 @@ public class GeminiEntity extends MonsterEntity {
     }
 
     @Override
-    protected void damageEntity(DamageSource damageSrc, float damageAmount) {
+    protected void damageEntity(@Nonnull DamageSource damageSrc, float damageAmount) {
         super.damageEntity(damageSrc, damageAmount);
         bossInfo.setPercent(this.getHealth() / this.getMaxHealth());
     }
@@ -81,13 +78,13 @@ public class GeminiEntity extends MonsterEntity {
     }
 
     @Override
-    public void addTrackingPlayer(ServerPlayerEntity player) {
+    public void addTrackingPlayer(@Nonnull ServerPlayerEntity player) {
         super.addTrackingPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
     @Override
-    public void removeTrackingPlayer(ServerPlayerEntity player) {
+    public void removeTrackingPlayer(@Nonnull ServerPlayerEntity player) {
         super.removeTrackingPlayer(player);
         this.bossInfo.removePlayer(player);
     }
@@ -104,7 +101,7 @@ public class GeminiEntity extends MonsterEntity {
     }
 
     @Override
-    protected boolean canBeRidden(Entity entityIn) {
+    protected boolean canBeRidden(@Nonnull Entity entityIn) {
         return false;
     }
 }

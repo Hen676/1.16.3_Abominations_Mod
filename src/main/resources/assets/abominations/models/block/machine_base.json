@@ -8,7 +8,7 @@
     }
   },
   "textures": {
-    "down": "#top",
+    "down": "abominations:block/machine_base",
     "up": "#top",
     "north": "#front",
     "east": "#side",

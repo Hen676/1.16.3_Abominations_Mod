@@ -1,7 +1,10 @@
-package com.hen676.abominations.inventory;
+package com.hen676.abominations.inventory.container;
 
 import com.hen676.abominations.init.BlockInit;
 import com.hen676.abominations.init.ContainerInit;
+import com.hen676.abominations.inventory.ReservoirAddSlot;
+import com.hen676.abominations.inventory.ReservoirRemoveSlot;
+import com.hen676.abominations.inventory.ReservoirResultSlot;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.IInventory;
@@ -17,6 +20,8 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
+import javax.annotation.Nonnull;
+
 public class ReservoirContainer extends Container {
     private TileEntity tileEntity;
     private IInventory inventory;
@@ -29,34 +34,38 @@ public class ReservoirContainer extends Container {
         this.playerEntity = player;
         if (tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
-                addSlot(new SlotItemHandler(h, 0, 8, 93));
-                addSlot(new SlotItemHandler(h, 1, 44, 93));
-                addSlot(new SlotItemHandler(h, 2, 116, 93));
-                addSlot(new SlotItemHandler(h, 3, 152, 93));
+                addSlot(new ReservoirAddSlot(h, 0, 8, 93));
+                addSlot(new ReservoirResultSlot(h, 1, 44, 93));
+                addSlot(new ReservoirRemoveSlot(h, 2, 116, 93));
+                addSlot(new ReservoirResultSlot(h, 3, 152, 93));
             });
         }
         layoutPlayerInventorySlots(8, 125);
     }
 
     @Override
-    public ItemStack transferStackInSlot(PlayerEntity playerIn, int index) {
+    @Nonnull
+    public ItemStack transferStackInSlot(@Nonnull PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
 
+        // 39 - 31 hot bar
+        // 30 - 4 inv
+        // 0 - 3 container
         if (slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if(index == 1 && index == 3) {
+            if(index < 3) {
                 if(!this.mergeItemStack(itemstack1,4,this.inventory.getSizeInventory(),true)) return ItemStack.EMPTY;
                 slot.onSlotChange(itemstack1,itemstack);
-            } else if (index != 0 && index != 2) {
-                if (index >= 3 && index < 30) {
-                    if (!this.mergeItemStack(itemstack1, 30, 39, false)) return ItemStack.EMPTY;
-                } else if (index >= 30 && index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
-                    return ItemStack.EMPTY;
-                }
+            } else if (index < 31) {
+                if (!this.mergeItemStack(itemstack1, 31, 39, false)) return ItemStack.EMPTY;
+                slot.onSlotChange(itemstack1,itemstack);
+            } else if (index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+                return ItemStack.EMPTY;
             }
+
 
             if (index < this.inventory.getSizeInventory()) {
                 if (!this.mergeItemStack(itemstack1, this.inventory.getSizeInventory(), this.inventorySlots.size(), true)) {
@@ -77,7 +86,12 @@ public class ReservoirContainer extends Container {
     }
 
     @Override
-    public boolean canInteractWith(PlayerEntity playerIn) {
+    public void putStackInSlot(int slotID, ItemStack stack) {
+        super.putStackInSlot(slotID, stack);
+    }
+
+    @Override
+    public boolean canInteractWith(@Nonnull PlayerEntity playerIn) {
         return isWithinUsableDistance(IWorldPosCallable.of(tileEntity.getWorld(),tileEntity.getPos()), playerEntity, BlockInit.RESERVOIR.get());
     }
 
@@ -99,11 +113,10 @@ public class ReservoirContainer extends Container {
         return index;
     }
 
-    private int addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
+    private void addSlotBox(IItemHandler handler, int index, int x, int y, int horAmount, int dx, int verAmount, int dy) {
         for (int j = 0 ; j < verAmount ; j++) {
             index = addSlotRange(handler, index, x, y, horAmount, dx);
             y += dy;
         }
-        return index;
     }
 }

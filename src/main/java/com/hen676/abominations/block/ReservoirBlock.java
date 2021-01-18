@@ -1,6 +1,6 @@
 package com.hen676.abominations.block;
 
-import com.hen676.abominations.inventory.ReservoirContainer;
+import com.hen676.abominations.inventory.container.ReservoirContainer;
 import com.hen676.abominations.tileEntity.ReservoirTileEntity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
 import net.minecraftforge.fml.network.NetworkHooks;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class ReservoirBlock extends AbstractMachineBlock {
@@ -36,8 +37,9 @@ public class ReservoirBlock extends AbstractMachineBlock {
     }
 
     @SuppressWarnings("deprecation")
+    @Nonnull
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public ActionResultType onBlockActivated(@Nonnull BlockState state, World worldIn,@Nonnull BlockPos pos,@Nonnull PlayerEntity player,@Nonnull Hand handIn,@Nonnull BlockRayTraceResult hit) {
         if(!worldIn.isRemote()) {
             TileEntity tileEntity = worldIn.getTileEntity(pos);
             if(tileEntity instanceof ReservoirTileEntity) {
@@ -48,7 +50,7 @@ public class ReservoirBlock extends AbstractMachineBlock {
                     }
 
                     @Override
-                    public Container createMenu(int i, PlayerInventory playerInventory, PlayerEntity playerEntity) {
+                    public Container createMenu(int i,@Nonnull PlayerInventory playerInventory,@Nonnull PlayerEntity playerEntity) {
                         return new ReservoirContainer(i, worldIn, pos, playerInventory, playerEntity);
                     }
                 };

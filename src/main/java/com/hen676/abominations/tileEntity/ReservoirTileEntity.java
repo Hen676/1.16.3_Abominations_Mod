@@ -1,7 +1,7 @@
 package com.hen676.abominations.tileEntity;
 
 import com.hen676.abominations.init.TileEntityInit;
-import com.hen676.abominations.inventory.ReservoirContainer;
+import com.hen676.abominations.inventory.container.ReservoirContainer;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;

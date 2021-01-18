@@ -3,7 +3,7 @@
 	"textures": 
 	{
 		"particle": "abominations:block/machine_base",
-	    "top": "abominations:block/machine_base",
+	    "top": "abominations:block/machine_vent",
 	    "front": "abominations:block/incinerator_on",
 	    "side": "abominations:block/machine_base"
 	}

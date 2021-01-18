@@ -20,7 +20,7 @@ public class BlockInit {
     /**
      * Blocks
      */
-    public static final RegistryObject<Block> FORGE = BLOCKS.register("forge",()-> new ForgeBlock());
-    public static final RegistryObject<Block> RESERVOIR = BLOCKS.register("reservoir",()-> new ReservoirBlock());
-    public static final RegistryObject<Block> INCINERATOR = BLOCKS.register("incinerator",()-> new IncineratorBlock());
+    public static final RegistryObject<Block> FORGE = BLOCKS.register("forge", ForgeBlock::new);
+    public static final RegistryObject<Block> RESERVOIR = BLOCKS.register("reservoir", ReservoirBlock::new);
+    public static final RegistryObject<Block> INCINERATOR = BLOCKS.register("incinerator", IncineratorBlock::new);
 }

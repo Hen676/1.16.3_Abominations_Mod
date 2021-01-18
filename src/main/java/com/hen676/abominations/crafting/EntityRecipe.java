@@ -19,15 +19,16 @@ import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
 public class EntityRecipe implements IRecipe<RecipeWrapper> {
-    private int inputLength;
-    private List<ResourceLocation> entities;
-    private ResourceLocation result;
-    private ResourceLocation id;
+    private final int inputLength;
+    private final List<ResourceLocation> entities;
+    private final ResourceLocation result;
+    private final ResourceLocation id;
 
     public EntityRecipe(int inputLength, List<ResourceLocation> input, ResourceLocation output, ResourceLocation id) {
         this.inputLength = inputLength;
@@ -50,6 +51,7 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
     }
 
     @Override
+    @Nonnull
     public ItemStack getCraftingResult(RecipeWrapper inv) {
         ItemStack item = new ItemStack(ItemInit.ENTITY.get());
         CompoundNBT nbt = item.getTag();
@@ -64,6 +66,7 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
     }
 
     @Override
+    @Nonnull
     public ItemStack getRecipeOutput() {
         ItemStack item = new ItemStack(ItemInit.ENTITY.get());
         CompoundNBT nbt = new CompoundNBT();
@@ -73,27 +76,32 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
     }
 
     @Override
+    @Nonnull
     public ResourceLocation getId() {
         return this.id;
     }
 
     @Override
+    @Nonnull
     public ItemStack getIcon() {
         return new ItemStack(BlockInit.FORGE.get());
     }
 
     @Override
+    @Nonnull
     public IRecipeSerializer<?> getSerializer() {
         return RecipeInit.ENTITY_RECIPE_SERIALIZER.get();
     }
 
     @Override
+    @Nonnull
     public IRecipeType<?> getType() {
         return RecipeInit.ENTITY_RECIPE;
     }
 
     public static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<EntityRecipe> {
         @Override
+        @Nonnull
         public EntityRecipe read(ResourceLocation recipeId, JsonObject json) {
             List<ResourceLocation> inputs = new ArrayList<>();
             final JsonArray list = JSONUtils.getJsonArray(json, "entities");
@@ -116,7 +124,7 @@ public class EntityRecipe implements IRecipe<RecipeWrapper> {
 
         @Nullable
         @Override
-        public EntityRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
+        public EntityRecipe read(@Nonnull ResourceLocation recipeId, PacketBuffer buffer) {
             List<ResourceLocation> inputs = new ArrayList<>();
             final int inputLength = buffer.readInt();
             for(int i=0; i<inputLength; i++) {

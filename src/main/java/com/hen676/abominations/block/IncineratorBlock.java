@@ -28,13 +28,13 @@ public class IncineratorBlock extends AbstractMachineBlock {
                 .harvestTool(ToolType.PICKAXE)
                 .harvestLevel(1)
         );
-        this.getDefaultState().with(ENABLED, Boolean.valueOf(false));
+        this.getDefaultState().with(ENABLED, false);
     }
 
     @Nullable
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context) {
-        return super.getStateForPlacement(context).with(ENABLED, Boolean.valueOf(false));
+        return super.getStateForPlacement(context).with(ENABLED, false);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class IncineratorBlock extends AbstractMachineBlock {
     public void neighborChanged(BlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos, boolean isMoving) {
         boolean flag = worldIn.isBlockPowered(pos);
         if (flag != state.get(ENABLED)) {
-            worldIn.setBlockState(pos, state.with(ENABLED, Boolean.valueOf(flag)), 2);
+            worldIn.setBlockState(pos, state.with(ENABLED, flag), 2);
         }
     }
 

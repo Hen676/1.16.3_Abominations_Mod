@@ -1,7 +1,7 @@
 package com.hen676.abominations.init;
 
 import com.hen676.abominations.Abominations;
-import com.hen676.abominations.inventory.ReservoirContainer;
+import com.hen676.abominations.inventory.container.ReservoirContainer;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.fml.RegistryObject;
