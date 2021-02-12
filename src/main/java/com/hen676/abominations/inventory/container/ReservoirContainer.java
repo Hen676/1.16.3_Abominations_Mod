@@ -32,7 +32,7 @@ public class ReservoirContainer extends Container {
         tileEntity = world.getTileEntity(pos);
         this.inventory = inv;
         this.playerEntity = player;
-        if (tileEntity != null) {
+        if(tileEntity != null) {
             tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h -> {
                 addSlot(new ReservoirAddSlot(h, 0, 8, 93));
                 addSlot(new ReservoirResultSlot(h, 1, 44, 93));
@@ -48,34 +48,29 @@ public class ReservoirContainer extends Container {
     public ItemStack transferStackInSlot(@Nonnull PlayerEntity playerIn, int index) {
         ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
-
         // 39 - 31 hot bar
         // 30 - 4 inv
         // 0 - 3 container
-        if (slot != null && slot.getHasStack()) {
+        if(slot != null && slot.getHasStack()) {
             ItemStack itemstack1 = slot.getStack();
             itemstack = itemstack1.copy();
 
-            if(index < 3) {
-                if(!this.mergeItemStack(itemstack1,4,this.inventory.getSizeInventory(),true)) return ItemStack.EMPTY;
-                slot.onSlotChange(itemstack1,itemstack);
-            } else if (index < 31) {
-                if (!this.mergeItemStack(itemstack1, 31, 39, false)) return ItemStack.EMPTY;
-                slot.onSlotChange(itemstack1,itemstack);
-            } else if (index < 39 && !this.mergeItemStack(itemstack1, 3, 30, false)) {
+            if(index < 4) {
+                if(!this.mergeItemStack(itemstack1,4,40,true)) return ItemStack.EMPTY;
+                    slot.onSlotChange(itemstack1,itemstack);
+            } else if(index < 31) {
+                //input
+                if(this.inventorySlots.get(0).isItemValid(itemstack1))
+                    if(!this.mergeItemStack(itemstack1, 0, 1, false)) return ItemStack.EMPTY;
+                else if(this.inventorySlots.get(0).isItemValid(itemstack1))
+                    if(!this.mergeItemStack(itemstack1, 2, 3, false)) return ItemStack.EMPTY;
+                else if(!this.mergeItemStack(itemstack1, 31, 40, false)) return ItemStack.EMPTY;
+                    slot.onSlotChange(itemstack1,itemstack);
+            } else if(index < 40 && !this.mergeItemStack(itemstack1, 4, 31, false)) {
                 return ItemStack.EMPTY;
             }
 
-
-            if (index < this.inventory.getSizeInventory()) {
-                if (!this.mergeItemStack(itemstack1, this.inventory.getSizeInventory(), this.inventorySlots.size(), true)) {
-                    return ItemStack.EMPTY;
-                }
-            } else if (!this.mergeItemStack(itemstack1, 4, this.inventory.getSizeInventory(), false)) {
-                return ItemStack.EMPTY;
-            }
-
-            if (itemstack1.isEmpty()) {
+            if(itemstack1.isEmpty()) {
                 slot.putStack(ItemStack.EMPTY);
             } else {
                 slot.onSlotChanged();
